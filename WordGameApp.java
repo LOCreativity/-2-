@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class WordGameApp {
 	Scanner st = new Scanner(System.in);
-	// »ı¼ºÀÚ, main(), °ÔÀÓÀ» ÀüÃ¼ÀûÀ¸·Î ÁøÇàÇÏ´Â run()¸Ş¼Òµå µîÀ¸·Î ±¸¼º
+	// ìƒì„±ì, main(), ê²Œì„ì„ ì „ì²´ì ìœ¼ë¡œ ì§„í–‰í•˜ëŠ” run()ë©”ì†Œë“œ ë“±ìœ¼ë¡œ êµ¬ì„±
 	private String fst;
 	private int pnum;
 	private Player[] player;
@@ -14,40 +14,38 @@ public class WordGameApp {
 	public void run() {
 		for(int i = 0; i < pnum; i++) {
 			
-			System.out.print("Âü°¡ÀÚÀÇ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä>> ");
+			System.out.print("ì°¸ê°€ìì˜ ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”>> ");
 			String name = st.next();
-			player[i] = new Player(name); 
+			this.player[i] = new Player(name); 
 		}
-		System.out.println("½ÃÀÛÇÏ´Â ´Ü¾î´Â " + fst + "ÀÔ´Ï´Ù");
+		System.out.println("ì‹œì‘í•˜ëŠ” ë‹¨ì–´ëŠ” " + this.fst + "ì…ë‹ˆë‹¤");
 		int count = 0;
 		while(true) {
-			System.out.print(player[count].getName() + ">> ");
-			player[count].setStr();
+			System.out.print(this.player[count].getName() + ">> ");
+			this.player[count].setStr();
 
-			String nextStr = player[count].getStr();
-			int lastIndex = fst.length() - 1;
-			char lastChar = fst.charAt(lastIndex);
+			String nextStr = this.player[count].getStr();
+			int lastIndex = this.fst.length() - 1;
+			char lastChar = this.fst.charAt(lastIndex);
 			char firstChar = nextStr.charAt(0);
 
 			if(!(lastChar == firstChar)) {
-				System.out.println(player[count].getName() + "ÀÌ Á³½À´Ï´Ù.");
+				System.out.println(this.player[count].getName() + "ì´ ì¡ŒìŠµë‹ˆë‹¤.");
 				break;
 			}
-			fst = nextStr;
+			this.fst = nextStr;
 			count++;
-			if(count == pnum) {
-				count = 0;
-			}
+			count = count%this.pnum;
 		}
 	}
 	private void createPlayers() {
-		System.out.print("°ÔÀÓ¿¡ Âü°¡ÇÏ´Â ÀÎ¿øÀº ¸î¸íÀÔ´Ï±î>>");
-		pnum = st.nextInt();
-		player = new Player[pnum];
+		System.out.print("ê²Œì„ì— ì°¸ê°€í•˜ëŠ” ì¸ì›ì€ ëª‡ëª…ì…ë‹ˆê¹Œ>>");
+		this.pnum = st.nextInt();
+		this.player = new Player[this.pnum];
 	}
 
 	public static void main(String[] args) {
-		WordGameApp ob = new WordGameApp("¿ÍÀÌÆÄÀÌ");
+		WordGameApp ob = new WordGameApp("ì™€ì´íŒŒì´");
 		ob.createPlayers();
 		ob.run();
 	}
