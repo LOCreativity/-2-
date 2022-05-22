@@ -11,12 +11,12 @@ class Player{
 	}
 
 	public String getName() {
-		return pname;
+		return this.pname;
 	}
 	public void setStr() {
 		pstr = st.next();
 	}
 	public String getStr() {
-		return pstr;
+		return this.pstr;
 	}
 }
